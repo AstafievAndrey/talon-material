@@ -1,0 +1,57 @@
+<div class="row">
+  <md-toolbar color="primary" class="mat-flex-wrap">
+
+      <a *ngFor="let item of toolbar" class="toolbar-a" [ngClass]="item.hidden">{{item.name}}</a>
+
+      <span class="example-spacer"></span>
+
+      <button md-icon-button [mdMenuTriggerFor]="menu" [ngClass]="'hidden-lg'">
+        <md-icon>more_vert</md-icon>
+      </button>
+      <md-menu #menu="mdMenu">
+        <button md-menu-item *ngFor="let item of toolbar" [ngClass]="item.visible">
+          <md-icon>{{item.icon}}</md-icon>
+          <span>{{item.name}}</span>
+        </button>
+      </md-menu>
+
+  </md-toolbar>
+</div>
+
+<div class="row" style="margin-top: 10%;background: #f3f3f3;" [ngStyle]="{'margin-top': mTop+'px' }">
+
+  <div class="col-sm-6 col-sm-offset-3">
+
+    <div class="row" style="padding: 20px;">
+      <div class="col-lg-10 col-md-9 col-sm-8">
+        <md-input-container style="width: 100%">
+          <input  placeholder="Введите номер талона:" mdInput
+                  [textMask]="{mask: mask}"
+                  [(ngModel)]="talon"
+          >
+        </md-input-container>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-3" style="text-align: center;">
+        <button md-raised-button color="primary" style=" width: 100%" (click)="findTalon()">Найти</button>
+      </div>
+    </div>
+
+    <div class="row" [hidden]="alert.hidden">
+      <div class="col-sm-12">
+        <div class="alert" [ngClass]="alert.class" role="alert">{{alert.message}}</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="col-sm-6 col-sm-offset-3 main-footer">
+  <span>Работу портала можно проверить на демонстрационном талоне с номером 00.0000.00000.000</span>
+  <br>
+  <span>Copyright © 2017 Министерство здравоохранения Российской Федерации.</span>
+  <br>
+  <span>По вопросам работы портала 8-800-500-74-78 или egisz@rt-eu.ru</span>
+</div>
+
