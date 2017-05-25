@@ -16,6 +16,29 @@
   transition: 0.3s;
 }
 
+.progress-spinner-margin{
+  margin: 10px auto;
+}
+
+.shadow{
+  background: #f3f3f3;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+}
+
+.search-talon{
+  padding: 20px;
+}
+
+.short-info-talon-head{
+  font-weight: bold;
+}
+
+.short-info-talon{
+  border-top:1px solid grey;
+}
+
 .main-footer{
   text-align: center;
   font-size: 10px;

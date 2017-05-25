@@ -1,6 +1,15 @@
 import {Component, OnInit, HostListener} from '@angular/core';
 import {MdSnackBar, MdSnackBarConfig, LiveAnnouncer} from '@angular/material';
 
+export class Talon{
+  id:number;
+  talon_number:string;
+  create:string;
+  profile:string;
+  mo:string;
+  status:string;
+}
+
 @Component({
   selector: 'app-main',
   templateUrl: 'main.component.html',
@@ -13,7 +22,9 @@ export class MainComponent implements OnInit {
   public mTop:number;
   public mask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/];
   public talon:string = "";
+  public shortInfoTalon:Talon;
   public alert:any = {class:'',message:'',hidden:true};
+  public hiddenSpinner:any = true;
 
   constructor(public snackBar: MdSnackBar) {
   }
@@ -25,11 +36,13 @@ export class MainComponent implements OnInit {
 
   @HostListener('window:resize')
   onResize() {
-      this.mTop = (window.innerHeight-400)/2;
+      let top = (window.innerHeight-400)/2;
+      this.mTop = (top<54)?54:top;
   }
 
+
+
   public findTalon():boolean{
-    console.log(this.talon);
     if(this.talon==''){
       this.alert = {class:'alert-warning',message:'Введите номер талона.',hidden:false};
       return false;
@@ -39,8 +52,19 @@ export class MainComponent implements OnInit {
       return false;
     }
     this.alert = {hidden:true};
+    this.hiddenSpinner = false;
     if(this.talon=="00.0000.00000.000"){
-      this.alert = {class:'alert-success',message:'Талон найден',hidden:false};
+      setTimeout(()=>{
+        this.hiddenSpinner = true;
+        this.shortInfoTalon = {
+          id : 0,
+          talon_number : '00.0000.00000.000',
+          create : '21.03.2011',
+          profile : 'сердечно-сосудистая хирургия',
+          mo : 'ФГУ "Российский кардиологический научно-производственный комплекс"',
+          status : 'ВМП оказана'
+        };
+      },4000)
     }
     return true;
   }

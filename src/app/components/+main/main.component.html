@@ -18,21 +18,59 @@
   </md-toolbar>
 </div>
 
-<div class="row" style="margin-top: 10%;background: #f3f3f3;" [ngStyle]="{'margin-top': mTop+'px' }">
+<div class="row" [ngStyle]="{'margin-top': mTop+'px' }">
 
-  <div class="col-sm-6 col-sm-offset-3">
+  <div class="col-sm-6 col-sm-offset-3 shadow">
 
-    <div class="row" style="padding: 20px;">
+    <div class="row search-talon">
       <div class="col-lg-10 col-md-9 col-sm-8">
         <md-input-container style="width: 100%">
           <input  placeholder="Введите номер талона:" mdInput
                   [textMask]="{mask: mask}"
-                  [(ngModel)]="talon"
-          >
+                  [(ngModel)]="talon">
         </md-input-container>
       </div>
       <div class="col-lg-2 col-md-3 col-sm-3" style="text-align: center;">
         <button md-raised-button color="primary" style=" width: 100%" (click)="findTalon()">Найти</button>
+      </div>
+    </div>
+
+    <div class="row" [hidden]="hiddenSpinner">
+      <div class="col-sm-12">
+        <md-progress-spinner
+          class="progress-spinner-margin"
+          [attr.color]="'primary'"
+          [mode]="'indeterminate'">
+        </md-progress-spinner>
+      </div>
+    </div>
+
+    <div class="row short-info-talon" *ngIf="shortInfoTalon">
+      <div class="col-sm-12" style="text-align: right;">
+        <md-icon style="cursor: pointer;" (click)="shortInfoTalon=undefined">close</md-icon>
+      </div>
+      <div class="col-sm-4">
+        <span class="short-info-talon-head">Талон</span> <br>
+        <span>{{shortInfoTalon.talon_number}}</span>
+      </div>
+      <div class="col-sm-4">
+        <span class="short-info-talon-head">Создание</span> <br>
+        <span>{{shortInfoTalon.create}}</span>
+      </div>
+      <div class="col-sm-4">
+        <span class="short-info-talon-head">Профиль</span> <br>
+        <span>{{shortInfoTalon.profile}}</span>
+      </div>
+      <div class="col-sm-12">
+        <span class="short-info-talon-head">Медицинское учреждение:</span><br>
+        <span>{{shortInfoTalon.mo}}</span>
+      </div>
+      <div class="col-sm-12">
+        <span class="short-info-talon-head">Статус</span><br>
+        <span style="color: #008e00;font-weight: bold;">{{shortInfoTalon.status}}</span>
+      </div>
+      <div class="col-sm-12" style="text-align: right;padding-bottom: 10px;">
+        <span style="font-weight: bold;cursor: pointer;">подробнее</span>
       </div>
     </div>
 
@@ -47,7 +85,7 @@
 </div>
 
 
-<div class="col-sm-6 col-sm-offset-3 main-footer">
+<div class="col-sm-6 col-sm-offset-3 main-footer hidden-xs">
   <span>Работу портала можно проверить на демонстрационном талоне с номером 00.0000.00000.000</span>
   <br>
   <span>Copyright © 2017 Министерство здравоохранения Российской Федерации.</span>

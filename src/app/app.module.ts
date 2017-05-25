@@ -25,7 +25,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     MainComponent,
-
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
