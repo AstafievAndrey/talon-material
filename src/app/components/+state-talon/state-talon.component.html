@@ -1,0 +1,18 @@
+<div class="row">
+  <md-toolbar color="warn">
+    <p>
+      state-talon works!
+    </p>
+  </md-toolbar>
+</div>
+
+
+<div class="row" [hidden]="hiddenSpinner">
+  <div class="col-sm-12">
+    <md-progress-spinner
+      class="progress-spinner-margin"
+      [attr.color]="'primary'"
+      [mode]="'indeterminate'">
+    </md-progress-spinner>
+  </div>
+</div>

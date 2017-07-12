@@ -10,10 +10,12 @@ import {MyMaterialModule} from './modules/my-material.module'
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/+main/main.component';
+import { StateTalonComponent } from './components/+state-talon/state-talon.component';
 
 
 const appRoutes: Routes = [
   { path: 'main', component: MainComponent },
+  { path: 'state-talon/:id', component: StateTalonComponent},
   { path: '',
     redirectTo: '/main',
     pathMatch: 'full'
@@ -25,6 +27,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     MainComponent,
+    StateTalonComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
